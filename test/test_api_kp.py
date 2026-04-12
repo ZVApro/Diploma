@@ -1,11 +1,10 @@
 import os
-
 import allure
+import requests
+import pytest
 from dotenv import load_dotenv
 
 load_dotenv()
-import requests
-import pytest
 
 
 @pytest.mark.api
@@ -14,7 +13,8 @@ import pytest
 # поиск по названию, проверить что в теле ответа есть
 def test_search_film_name():
     name = 'Мачеха'
-    url = f"https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword={name}&page=1"
+    url = (f"https://kinopoiskapiunofficial.tech/api/v2.1/"
+           f"films/search-by-keyword?keyword={name}&page=1")
     key = os.getenv('API_KEY')
     payload = {}
     headers = {
@@ -43,7 +43,8 @@ def test_search_film_name():
 # запрос с неправильным токеном, ожидаемая ошибка
 def test_search_no_token():
     name = 'Мачеха'
-    url = f"https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword={name}&page=1"
+    url = (f"https://kinopoiskapiunofficial.tech/api/v2.1/"
+           f"films/search-by-keyword?keyword={name}&page=1")
     payload = {}
     headers = {
         'accept': 'application/json',
@@ -63,7 +64,8 @@ def test_search_no_token():
 @allure.story("Поиск")
 def test_search_film_name_eng():
     name = 'Star wars'
-    url = f"https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword={name}&page=1"
+    url = (f"https://kinopoiskapiunofficial.tech/api/v2.1/"
+           f"films/search-by-keyword?keyword={name}&page=1")
     key = os.getenv('API_KEY')
     payload = {}
     headers = {
@@ -92,7 +94,8 @@ def test_search_film_name_eng():
 # поиск фильма без названия
 def test_search_film_no_name():
     name = ''
-    url = f"https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword={name}&page=1"
+    url = (f"https://kinopoiskapiunofficial.tech/api/v2.1/"
+           f"films/search-by-keyword?keyword={name}&page=1")
     key = os.getenv('API_KEY')
     payload = {}
     headers = {
@@ -119,7 +122,8 @@ def test_search_film_no_name():
 # поиск фильма в названии номер
 def test_search_film_number():
     name = '911'
-    url = f"https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword={name}&page=1"
+    url = (f"https://kinopoiskapiunofficial.tech/api/v2.1/"
+           f"films/search-by-keyword?keyword={name}&page=1")
     key = os.getenv('API_KEY')
     payload = {}
     headers = {

@@ -45,4 +45,6 @@ pytest tests/test_ui.py -v
 - pip install webdriver-manager
 - pip install allure-pytest
 - pip install requests
-- 
+
+
+ Отчет с Allure (-allure serve allure-results-) доступен: http://localhost:63342

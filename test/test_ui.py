@@ -2,10 +2,10 @@ from pages.ui_page import MainPage
 import allure
 import pytest
 
+
 @pytest.mark.ui
 @allure.title("Поиск фильма на русском языке")
 @allure.story("Поиск")
-
 def test_search_film(driver):
     film_name = "Мачеха"
     with allure.step("Переходна главную страницу"):
@@ -16,10 +16,10 @@ def test_search_film(driver):
     with allure.step("Выполняем проверку, что фильм первый в списке"):
         assert main_page.get_top_search_results(film_name) == film_name
 
+
 @pytest.mark.api
 @allure.title("Переход на вкладку «Билеты в кино»")
 @allure.story("Переход")
-
 def test_go_to_movie_tickets(driver):
     """Тест для проверки перехода на вкладку «Билеты в кино» на Кинопоиске"""
     with allure.step("Переходна главную страницу"):
@@ -30,10 +30,10 @@ def test_go_to_movie_tickets(driver):
     with allure.step("Выполняем проверку, что перешли на страницу"):
         assert "Билеты в кино" in response
 
+
 @pytest.mark.api
 @allure.title("Поиск фильма по ID")
 @allure.story("Поиск")
-
 def test_search_film_id(driver):
     id_film = 1949
     url = f'https://www.kinopoisk.ru/film/{id_film}/'
@@ -42,13 +42,14 @@ def test_search_film_id(driver):
         main_page.open_main_page(url)
     with allure.step("Переходим на карточку Фильма"):
         stepmom = main_page.search_CSS_selector()
-    with allure.step("Выполняем проверку, что отобразился постер Фильма по id"):
+    with allure.step("Выполняем проверку, "
+                     "что отобразился постер Фильма по id"):
         assert stepmom.is_displayed(), "Постер не отображается"
+
 
 @pytest.mark.api
 @allure.title("Переход на вкладку «Фильмы»")
 @allure.story("Переход")
-
 def test_go_to_movie_films(driver):
     """Тест для проверки перехода на вкладку «Фильмы» на Кинопоиске"""
     with allure.step("Переходна главную страницу"):
@@ -59,10 +60,10 @@ def test_go_to_movie_films(driver):
     with allure.step("Выполняем проверку, что перешли на страницу"):
         assert "Фильмы" in response
 
+
 @pytest.mark.api
 @allure.title("Переход на вкладку «Сериалы»")
 @allure.story("Переход")
-
 def test_go_to_serial(driver):
     """Тест для проверки перехода на вкладку «Сериалы» на Кинопоиске"""
     with allure.step("Переходна главную страницу"):

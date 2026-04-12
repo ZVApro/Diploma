@@ -12,7 +12,9 @@ class MainPage:
 
         """открыть главную страницу"""
 
-    selector = '[class="film-poster styles_root__J_gIg styles_rootInLight__iqWuw image styles_root__95qkI"]'
+    selector = ('[class="film-poster styles_root__J_gIg '
+                'styles_rootInLight__iqWuw image styles_root__95qkI"]'
+                )
 
     def open_main_page(self, url="https://www.kinopoisk.ru/"):
         self.driver.get(url)
@@ -33,7 +35,8 @@ class MainPage:
     def get_search_results(self) -> list:
         results_selector = 'js-serp-metrik'
         results = self.wait.until(
-            EC.visibility_of_all_elements_located((By.CSS_SELECTOR, results_selector))
+            EC.visibility_of_all_elements_located(
+                (By.CSS_SELECTOR, results_selector))
         )
         return results
 
@@ -41,7 +44,9 @@ class MainPage:
         """возвращает название фильма, первого в поиске"""
         result = self.wait.until(
             EC.presence_of_element_located(
-                (By.XPATH, f'//div[@class="element most_wanted"]//p[@class="name"]//a[contains(text(), "{name}")]')
+                (By.XPATH, f'//div[@class="element most_wanted"]//'
+                           f'p[@class="name"]//a[contains(text(), "{name}")]'
+                 )
             )
         )
         return result.text
@@ -52,7 +57,10 @@ class MainPage:
 
         # Поиск по тексту ссылки
         tickets_link = self.wait.until(
-            EC.element_to_be_clickable((By.XPATH, "//a[contains(text(), 'Билеты в кино')]")))
+            EC.element_to_be_clickable(
+                (By.XPATH, "//a[contains(text(), 'Билеты в кино')]")
+            )
+        )
         tickets_link.click()
         return self.driver.title
 
@@ -71,7 +79,9 @@ class MainPage:
 
         # Поиск по тексту ссылки
         films_link = self.wait.until(
-            EC.element_to_be_clickable((By.XPATH, '//a[@href="/lists/categories/movies/1/"]'))
+            EC.element_to_be_clickable(
+                (By.XPATH, '//a[@href="/lists/categories/movies/1/"]')
+            )
         )
 
         films_link.click()
@@ -84,7 +94,9 @@ class MainPage:
 
         #  # переход к разделу меню Сериалы
         serial_link = self.wait.until(
-            EC.element_to_be_clickable((By.XPATH, '//a[@href="/lists/categories/movies/3/"]'))
+            EC.element_to_be_clickable(
+                (By.XPATH, '//a[@href="/lists/categories/movies/3/"]')
+            )
         )
 
         serial_link.click()
